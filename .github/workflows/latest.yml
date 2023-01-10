@@ -12,7 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
-        re_ver: ['0.2.0']
+        re_ver: ['0.2.1']
 
     steps:
     - name: Checkout
