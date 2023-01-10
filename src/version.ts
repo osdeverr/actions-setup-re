@@ -25,13 +25,14 @@ function extractPlatformFrom(filename: string): string {
   if (filename.match(/Linux/) || filename.match(/linux/)) {
     return 'linux';
   } else if (filename.match(/Darwin/) || filename.match(/macos/)) {
-    return 'macos';
+    return 'darwin';
   } else if (
     filename.match(/win32/) ||
     filename.match(/windows/) ||
+    filename.match(/Windows/) ||
     filename.match(/win64/)
   ) {
-    return 'windows';
+    return 'win32';
   } else {
     return '';
   }
