@@ -4,8 +4,8 @@ import * as semver from 'semver';
 import * as vi from './version-info';
 
 const VERSION_URL: string =
-  'https://api.github.com/repos/Kitware/CMake/releases';
-const USER_AGENT: string = 'jwlawson-actions-setup-cmake';
+  'https://api.github.com/repos/osdeverr/rebs/releases';
+const USER_AGENT: string = 'osdeverr-actions-setup-re';
 
 interface GithubAsset {
   name: string;

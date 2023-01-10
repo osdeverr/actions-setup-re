@@ -1,10 +1,10 @@
 import * as core from '@actions/core';
-import * as setup from './setup-cmake';
+import * as setup from './setup-re';
 import * as version from './version';
 
 async function run() {
   try {
-    const requested_version = core.getInput('cmake-version');
+    const requested_version = core.getInput('re-version');
     const required_version =
       requested_version === 'latest' ? '' : requested_version;
     const api_token = core.getInput('github-api-token');
@@ -17,7 +17,7 @@ async function run() {
     const use_32bits = core.getInput('use-32bit').toLowerCase() === 'true';
     const arch_candidates = use_32bits ? ['x86'] : ['x86_64', 'x86'];
 
-    await setup.addCMakeToPath(chosen_version_info, arch_candidates);
+    await setup.addReToPath(chosen_version_info, arch_candidates);
   } catch (error) {
     core.setFailed((error as Error).message);
   }

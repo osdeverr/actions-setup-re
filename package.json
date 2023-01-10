@@ -1,24 +1,23 @@
 {
-  "name": "actions-setup-cmake",
-  "version": "1.13.1",
-  "description": "GitHub action to setup cmake",
+  "name": "actions-setup-re",
+  "version": "1.0",
+  "description": "GitHub action to setup Re",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jwlawson/actions-setup-cmake"
+    "url": "https://github.com/osdever/actions-setup-re"
   },
   "scripts": {
     "package": "ncc build src/index.ts -m -o dist",
     "format": "prettier --write **/*.ts",
-    "prepare": "npm run format && npm run package",
-    "test": "jest"
+    "prepare": "npm run format && npm run package"
   },
   "keywords": [
-    "cmake",
+    "re",
     "action",
     "setup"
   ],
-  "author": "John Lawson",
+  "author": "osdever (forked from John Lawson)",
   "license": "BSD-3-Clause-Clear",
   "dependencies": {
     "@actions/core": "^1.9.1",

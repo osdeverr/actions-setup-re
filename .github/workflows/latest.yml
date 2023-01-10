@@ -1,27 +1,62 @@
 on:
+  push:
+    branches: [master]
   pull_request:
     branches: [master]
 
 jobs:
-  latest_version:
+  action_tests:
     runs-on: ${{ matrix.os }}
-    name: Test latest version
+    name: Action Test
     strategy:
+      fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest, windows-latest]
+        re_ver: ['0.2.0']
 
     steps:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Setup cmake
+    - name: Setup Re
       uses: ./
       id: setup
       with:
-        cmake-version: 'latest'
+        re-version: ${{ matrix.re_ver }}
 
-    - name: Run cmake --version
+    - name: Run `re version`
       shell: bash
+      if: matrix.re_ver != ''
+      run: re version
+
+  unit_tests:
+    runs-on: ${{ matrix.os }}
+    name: Unit Test
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+    - name: Setup node
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16.x'
+
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Install node dependencies
+      run: npm install
+
+    - name: Check `npm run format` has been run
       run: |
-        VERSION=`cmake --version`
-        echo $VERSION
+        npm run format
+        git diff --quiet src/ __tests__/
+
+    - name: Check `npm run package` has been run
+      run: |
+        npm run package
+        git diff --quiet dist/
+
+    # - name: Run tests
+    #   run: npm test
