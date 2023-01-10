@@ -33,7 +33,7 @@ function getURL(
   }
   if (matching_assets.length > 1) {
     core.warning(`Found ${matching_assets.length} matching packages.`);
-    
+
     // Check to see if this narrows down the options or just removes all options.
     // Prefer to use all previous matches when none of them include '64'.
     const possible_assets = matching_assets.filter((a) => a.url.match('64'));
