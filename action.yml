@@ -12,7 +12,6 @@ inputs:
     default: 'true'
   internal-action-self-path:
     description: "[Internal] The path to the action's root directory. You shouldn't set this property."
-    default: '${{ github.action_path }}'
 runs:
   using: 'composite'
   steps:
@@ -20,7 +19,7 @@ runs:
     #   with:
     #     node-version: '16.x'
 
-    - run: 'node ${{ inputs.internal-action-self-path }}/dist/index.js'
+    - run: 'node ${{ github.action_path }}/dist/index.js'
       shell: bash
         
     - uses: jwlawson/actions-setup-cmake@v1.13
