@@ -5,6 +5,8 @@ Based off of [jwlawson/actions-setup-cmake](https://github.com/jwlawson/actions-
 
 This action will update the path for your workflow to include Re matching the platform and version requirements.
 
+To actually build projects with Re after setting it up, check out [osdeverr/actions-build-re-target](https://github.com/osdeverr/actions-build-re-target) and [osdeverr/actions-run-re-target](https://github.com/osdeverr/actions-run-re-target)!
+
 ### Usage
 
 Adding a step that uses this action to your workflow will setup Re and make it available to subsequent steps:
@@ -13,13 +15,12 @@ Adding a step that uses this action to your workflow will setup Re and make it a
 jobs:
   example:
     runs-on: ubuntu-latest
+    
     steps:
-
     - name: Setup Re
-      uses: osdeverr/actions-setup-re@v1.0
+      uses: osdeverr/actions-setup-re@v2
       with:
-        re-version: '0.2.0'
-        install-path: ${{ github.workspace }}/re-bin
+        re-version: '0.2.6'
 
     - name: Use Re
       run: re version
@@ -31,7 +32,7 @@ There are two options for the action:
 
 * `re-version` controls the version of Re that is added to the path. This
   can be a fully specified verison `0.1.19`, partly specified `0.2`, a wildcard
-  version `0.2s.x`. By default it is empty which will give the latest Re
+  version `0.2.x`. By default it is empty which will give the latest Re
   version available on GitHub.
 
   The version can also be specified to be `latest` which is equivalent to
@@ -46,6 +47,10 @@ There are two options for the action:
   See also:
    - [GitHub API rate limiting]
    - [GITHUB_TOKEN]
+
+ * `setup-cmake` allows you to disable automatically setting up CMake in the workflow environment.
+   This will speed up the run a little bit but will cause builds to fail if any of them include
+   CMake projects or dependencies. `setup-cmake` is true by default.
 
 ### How it works
 
