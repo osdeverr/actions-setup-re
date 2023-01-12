@@ -20,11 +20,11 @@ runs:
     #   with:
     #     node-version: '16.x'
 
-    - run: 'cd ${{ github.action_path }} && node ./dist/index.js'
+    - run: cd '${{ github.action_path }}' && node './dist/index.js'
       if: ${{ inputs.internal-action-self-path == '' }}
       shell: bash
       
-    - run: 'cd ${{ inputs.internal-action-self-path }} && node ./dist/index.js'
+    - run: cd '${{ inputs.internal-action-self-path }}' && node './dist/index.js'
       if: ${{ inputs.internal-action-self-path != '' }}
       shell: bash
         
