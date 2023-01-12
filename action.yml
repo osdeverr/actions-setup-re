@@ -33,9 +33,3 @@ runs:
 
     - uses: seanmiddleditch/gha-setup-ninja@v3
       if: ${{ inputs.setup-cmake == 'true' && runner.os != 'Windows' }}
-    
-    # Sets up the MSVC dev command prompt in case we're running Windows
-    - uses: ilammy/msvc-dev-cmd@v1
-      if: runner.os == 'Windows'
-      with:
-        arch: ${{ inputs.arch }}
