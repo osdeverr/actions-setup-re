@@ -10,6 +10,9 @@ inputs:
   setup-cmake:
     description: 'Set up CMake and Ninja to build CMake projects using Re'
     default: 'true'
+  internal-action-self-path:
+    description: "[Internal] The path to the action's root directory. You shouldn't set this property."
+    default: '${{ github.action_path }}'
 runs:
   using: 'composite'
   steps:
@@ -17,8 +20,8 @@ runs:
     #   with:
     #     node-version: '16.x'
 
-    - run: 'node dist/index.js'
-      shell: 'bash'
+    - run: 'node ${{ inputs.internal-action-self-path }}/dist/index.js'
+      shell: bash
         
     - uses: jwlawson/actions-setup-cmake@v1.13
       if: ${{ inputs.setup-cmake == 'true' && runner.os != 'Windows' }}
