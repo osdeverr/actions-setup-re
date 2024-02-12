@@ -1,8 +1,9 @@
 name: "actions-setup-re"
 description: "Setup the Re build system"
 inputs:
-  version:
+  re-version:
     description: "The version of Re to setup. E.g. 0.2.0"
+    required: true
     default: "latest"
   github-api-token:
     description: "GitHub token to use when retrieving version info"
@@ -14,22 +15,5 @@ inputs:
     description: "[Internal] The path to the action's root directory. You shouldn't set this property."
     default: ""
 runs:
-  using: "composite"
-  steps:
-    # - uses: actions/setup-node@v3
-    #   with:
-    #     node-version: '16.x'
-
-    - run: cd '${{ github.action_path }}' && node './dist/index.js'
-      if: ${{ inputs.internal-action-self-path == '' }}
-      shell: bash
-
-    - run: cd '${{ inputs.internal-action-self-path }}' && node './dist/index.js'
-      if: ${{ inputs.internal-action-self-path != '' }}
-      shell: bash
-
-    - uses: jwlawson/actions-setup-cmake@v1.13
-      if: ${{ inputs.setup-cmake == 'true' && runner.os != 'Windows' }}
-
-    - uses: seanmiddleditch/gha-setup-ninja@v3
-      if: ${{ inputs.setup-cmake == 'true' && runner.os != 'Windows' }}
+  using: node20
+  main: dist/index.js

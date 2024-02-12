@@ -22,7 +22,7 @@ jobs:
       uses: ./
       id: setup
       with:
-        version: ${{ matrix.re_ver }}
+        re-version: ${{ matrix.re_ver }}
         internal-action-self-path: ./
 
     - name: Run `re version`

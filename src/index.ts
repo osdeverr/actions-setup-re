@@ -4,7 +4,7 @@ import * as version from './version';
 
 async function run() {
   try {
-    const requested_version = core.getInput('version');
+    const requested_version = core.getInput('re-version');
 
     const required_version =
       requested_version === 'latest' ? '' : requested_version;
