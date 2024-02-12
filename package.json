@@ -1,6 +1,6 @@
 {
   "name": "actions-setup-re",
-  "version": "2.0",
+  "version": "3.0",
   "description": "GitHub action to setup Re",
   "main": "dist/index.js",
   "repository": {
