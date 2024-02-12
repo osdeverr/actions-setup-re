@@ -199,8 +199,6 @@ export function getLatestMatching(
   version: string,
   version_list: vi.VersionInfo[]
 ): vi.VersionInfo {
-  console.log(JSON.stringify(version_list));
-
   let matching_versions = version_list
     .filter((v) => !v.draft && !v.prerelease)
     .filter((v) => semver.satisfies(v.name, version));

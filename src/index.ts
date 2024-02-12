@@ -10,7 +10,6 @@ async function run() {
       requested_version === 'latest' ? '' : requested_version;
 
     console.log(`Setting up Re (version: ${requested_version})`);
-    console.log(`${console.log(process.env)})`);
 
     const api_token = core.getInput('github-api-token');
 
