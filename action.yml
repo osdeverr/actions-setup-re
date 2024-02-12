@@ -1,20 +1,20 @@
-name: 'actions-setup-re'
-description: 'Setup the Re build system'
+name: "actions-setup-re"
+description: "Setup the Re build system"
 inputs:
-  re-version:
-    description: 'The version of Re to setup. E.g. 0.2.0'
-    default: 'latest'
+  version:
+    description: "The version of Re to setup. E.g. 0.2.0"
+    default: "latest"
   github-api-token:
-    description: 'GitHub token to use when retrieving version info'
-    default: '${{ github.token }}'
+    description: "GitHub token to use when retrieving version info"
+    default: "${{ github.token }}"
   setup-cmake:
-    description: 'Set up CMake and Ninja to build CMake projects using Re'
-    default: 'true'
+    description: "Set up CMake and Ninja to build CMake projects using Re"
+    default: "true"
   internal-action-self-path:
     description: "[Internal] The path to the action's root directory. You shouldn't set this property."
-    default: ''
+    default: ""
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
     # - uses: actions/setup-node@v3
     #   with:
@@ -23,11 +23,11 @@ runs:
     - run: cd '${{ github.action_path }}' && node './dist/index.js'
       if: ${{ inputs.internal-action-self-path == '' }}
       shell: bash
-      
+
     - run: cd '${{ inputs.internal-action-self-path }}' && node './dist/index.js'
       if: ${{ inputs.internal-action-self-path != '' }}
       shell: bash
-        
+
     - uses: jwlawson/actions-setup-cmake@v1.13
       if: ${{ inputs.setup-cmake == 'true' && runner.os != 'Windows' }}
 
