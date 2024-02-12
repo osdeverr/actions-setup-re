@@ -4,12 +4,13 @@ import * as version from './version';
 
 async function run() {
   try {
-    const requested_version: string = '${{ inputs.re-version }}';
+    const requested_version = core.getInput('re-version');
 
     const required_version =
       requested_version === 'latest' ? '' : requested_version;
 
     console.log(`Setting up Re (version: ${requested_version})`);
+    console.log(`${console.log(process.env)})`);
 
     const api_token = core.getInput('github-api-token');
 
