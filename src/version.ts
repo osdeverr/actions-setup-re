@@ -179,6 +179,7 @@ export async function getAllVersionInfo(
     }
   }
   core.debug(`overall got ${raw_versions.length} versions`);
+
   const versions: vi.VersionInfo[] = convertToVersionInfo(raw_versions);
   return versions;
 }
@@ -194,9 +195,12 @@ export function getLatestMatching(
   version: string,
   version_list: vi.VersionInfo[]
 ): vi.VersionInfo {
+  console.log(JSON.stringify(version_list));
+
   let matching_versions = version_list
     .filter((v) => !v.draft && !v.prerelease)
     .filter((v) => semver.satisfies(v.name, version));
+
   if (matching_versions.length == 0) {
     throw new Error('Unable to find version matching ' + version);
   }
