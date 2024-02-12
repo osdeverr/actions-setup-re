@@ -3,7 +3,6 @@ description: "Setup the Re build system"
 inputs:
   re-version:
     description: "The version of Re to setup. E.g. 0.2.0"
-    required: true
     default: "latest"
   github-api-token:
     description: "GitHub token to use when retrieving version info"
@@ -11,9 +10,6 @@ inputs:
   setup-cmake:
     description: "Set up CMake and Ninja to build CMake projects using Re"
     default: "true"
-  internal-action-self-path:
-    description: "[Internal] The path to the action's root directory. You shouldn't set this property."
-    default: ""
 runs:
   using: node20
   main: dist/index.js
